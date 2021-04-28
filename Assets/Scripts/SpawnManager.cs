@@ -33,7 +33,6 @@ public class SpawnManager : MonoBehaviour
     public bool killedMedium;
     public bool killedLight;
     public bool isGameOver;
-    public bool oneShot;
 
     void Start()
     {
@@ -57,7 +56,6 @@ public class SpawnManager : MonoBehaviour
         menuMusic.Stop();
         gameSoundtrack.PlayDelayed(.5f);
         isGameOver = false;
-        oneShot = false;
     }
 
     //Enemy types, waves and spawns
