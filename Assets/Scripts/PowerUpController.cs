@@ -29,6 +29,21 @@ public class PowerUpController : MonoBehaviour
         Vector3 lookingPosition = (player.transform.position + transform.position).normalized;
         powerupRb.AddForce(lookingPosition * speed);
 
+        PowerUpMovement();
+    }
+
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            spawnManager.PlayPowerUpPickUpSound();
+        }
+    }
+
+    void PowerUpMovement()
+    {
         //Constraints the powerup by adding a Vector3 force to the opposite side of the bounds
         if (transform.position.x > boundX)
         {
@@ -49,17 +64,6 @@ public class PowerUpController : MonoBehaviour
         {
             powerupRb.AddForce(Vector3.forward * enemyForce, ForceMode.Impulse);
             spawnManager.PlayPowerUpBounceSound();
-        }
-    
-    }
-
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-            spawnManager.PlayPowerUpPickUpSound();
         }
     }
 }

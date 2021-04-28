@@ -32,6 +32,8 @@ public class SpawnManager : MonoBehaviour
     public bool killedHeavy;
     public bool killedMedium;
     public bool killedLight;
+    public bool isGameOver;
+    public bool oneShot;
 
     void Start()
     {
@@ -54,6 +56,8 @@ public class SpawnManager : MonoBehaviour
         titleScreen.gameObject.SetActive(false);
         menuMusic.Stop();
         gameSoundtrack.PlayDelayed(.5f);
+        isGameOver = false;
+        oneShot = false;
     }
 
     //Enemy types, waves and spawns
@@ -74,12 +78,13 @@ public class SpawnManager : MonoBehaviour
             SpawnEnemyLight();
             wave2 = false;
         }
-        if(wave3 == true && killedHeavy == true && killedMedium == true && killedLight == true)
+        if(wave3 == true && killedHeavy == true && killedMedium == true && killedLight == true && isGameOver == false)
         {
             winText.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
             gameSoundtrack.Stop();
             gameSounds.PlayOneShot(gameWonSound);
+            isGameOver = true;
         }
     }
 
@@ -152,6 +157,6 @@ public class SpawnManager : MonoBehaviour
     //Function to call powerupBounceSound audio clip on powerupcontroller
     public void PlayPowerUpBounceSound()
     {
-        gameSounds.PlayOneShot(powerupBounceSound, 1f);
+        gameSounds.PlayOneShot(powerupBounceSound, .2f);
     }
 }
