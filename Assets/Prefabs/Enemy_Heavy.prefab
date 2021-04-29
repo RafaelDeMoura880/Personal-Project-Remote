@@ -126,4 +126,4 @@ MonoBehaviour:
     type: 3}
   boundX: 62
   boundZ: 40
-  enemyForce: 15
+  enemyForce: 1

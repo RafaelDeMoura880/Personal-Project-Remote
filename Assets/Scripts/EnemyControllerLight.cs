@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class EnemyControllerLight : MonoBehaviour
 {
-    //Speed, Rigidbody and player's gameobject
     public float speed = 1f;
     private Rigidbody enemyRb;
     private GameObject player;
     private PlayerController playerController;
     private SpawnManager spawnManager;
     public ParticleSystem explosionEffect;
-    //FIND A WAY TO COMMUNICATE WITH THE CONSTRAINTOUTOFBOUNDS() ON THE PLAYERCONTROLLER
-    public float boundX = 40f;
-    public float boundZ = 40f;
-    public float enemyForce = 15f;
-
-
-    // Start is called before the first frame update
+    public float boundX;
+    public float boundZ;
+    public float enemyForce;
+    
     void Start()
     {
         //Assigning to Enemy_Light rigidbody component & findind player's gameobject
@@ -26,8 +22,7 @@ public class EnemyControllerLight : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         if (playerController.hasPowerup == false) //Creates a chasing location based on the players position minus its own position if !hasPowerup
@@ -40,24 +35,7 @@ public class EnemyControllerLight : MonoBehaviour
         {
             Vector3 lookingPosition = (player.transform.position + transform.position).normalized;
             enemyRb.AddForce(lookingPosition * speed);
-        }
-
-        //Constraints the enemy - FIND A WAY TO COMMUNICATE WITH THE CONSTRAINTOUTOFBOUNDS() ON THE PLAYERCONTROLLER
-        if (transform.position.x > boundX)
-        {
-            transform.position = new Vector3(boundX, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x < -boundX)
-        {
-            transform.position = new Vector3(-boundX, transform.position.y, transform.position.z);
-        }
-        if (transform.position.z > boundZ)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, boundZ);
-        }
-        if (transform.position.z < -boundZ)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -boundZ);
+            ConstraintNoForce();
         }
     }
 
@@ -89,6 +67,26 @@ public class EnemyControllerLight : MonoBehaviour
         if (transform.position.z < -boundZ)
         {
             enemyRb.AddForce(Vector3.forward * enemyForce, ForceMode.Impulse);
+        }
+    }
+
+    void ConstraintNoForce()
+    {
+        if (transform.position.x > boundX)
+        {
+            transform.position = new Vector3(boundX, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x < -boundX)
+        {
+            transform.position = new Vector3(-boundX, transform.position.y, transform.position.z);
+        }
+        if (transform.position.z > boundZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, boundZ);
+        }
+        if (transform.position.z < -boundZ)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -boundZ);
         }
     }
 }

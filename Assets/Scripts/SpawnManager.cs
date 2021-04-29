@@ -17,7 +17,6 @@ public class SpawnManager : MonoBehaviour
     private AudioSource menuMusic;
     private AudioSource gameSounds;
     private AudioSource gameSoundtrack;  //"soundtrack" when the game starts
-    //private AudioSource gameWonSound;
     public AudioClip powerupPickUp;
     public AudioClip gameoverSound;
     public AudioClip powerupSpawnSound;
@@ -149,12 +148,12 @@ public class SpawnManager : MonoBehaviour
     //Function to call the enemyDestroySound audio clip on enemy controllers
     public void PlayEnemyDestroySound()
     {
-        gameSounds.PlayOneShot(enemyDestroySound, 2f);
+        gameSounds.PlayOneShot(enemyDestroySound, 1f);
     }
 
     //Function to call powerupBounceSound audio clip on powerupcontroller
     public void PlayPowerUpBounceSound()
     {
-        gameSounds.PlayOneShot(powerupBounceSound, .2f);
+        gameSounds.PlayOneShot(powerupBounceSound, .1f);
     }
 }

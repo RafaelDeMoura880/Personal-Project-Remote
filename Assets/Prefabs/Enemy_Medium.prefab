@@ -110,7 +110,7 @@ MonoBehaviour:
     type: 3}
   boundX: 62
   boundZ: 40
-  enemyForce: 15
+  enemyForce: 1
 --- !u!54 &7740012021742339757
 Rigidbody:
   m_ObjectHideFlags: 0

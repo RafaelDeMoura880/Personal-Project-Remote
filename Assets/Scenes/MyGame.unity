@@ -1267,7 +1267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055405604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.05, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2193,13 +2193,14 @@ MonoBehaviour:
   powerupBounceSound: {fileID: 8300000, guid: e7ee25a47d63b46cdaf65480d62b405c, type: 3}
   gameWonSound: {fileID: 8300000, guid: 88e9fb5907048f1458c7279d4efa603a, type: 3}
   spawnRangeX: 49
-  spawnRangeZ: 49
+  spawnRangeZ: 40
   wave1: 0
   wave2: 0
   wave3: 0
   killedHeavy: 0
   killedMedium: 0
   killedLight: 0
+  isGameOver: 0
 --- !u!4 &1463061473
 Transform:
   m_ObjectHideFlags: 0
