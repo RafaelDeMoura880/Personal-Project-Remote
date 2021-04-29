@@ -101,7 +101,7 @@ public class SpawnManager : MonoBehaviour
     {
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
         float randomZ = Random.Range(-spawnRangeZ, spawnRangeZ);
-        Vector3 spawnPos = new Vector3(randomX, 5f, randomZ);
+        Vector3 spawnPos = new Vector3(randomX, 2f, randomZ);
 
         Instantiate(enemies[2], spawnPos, enemies[2].gameObject.transform.rotation);
         killedHeavy = false;
@@ -111,7 +111,7 @@ public class SpawnManager : MonoBehaviour
     {
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
         float randomZ = Random.Range(-spawnRangeZ, spawnRangeZ);
-        Vector3 spawnPos = new Vector3(randomX, 5f, randomZ);
+        Vector3 spawnPos = new Vector3(randomX, 2f, randomZ);
 
         Instantiate(enemies[1], spawnPos, enemies[1].gameObject.transform.rotation);
         killedMedium = false;
@@ -121,7 +121,7 @@ public class SpawnManager : MonoBehaviour
     {
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
         float randomZ = Random.Range(-spawnRangeZ, spawnRangeZ);
-        Vector3 spawnPos = new Vector3(randomX, 5f, randomZ);
+        Vector3 spawnPos = new Vector3(randomX, 2f, randomZ);
 
         Instantiate(enemies[0], spawnPos, enemies[0].gameObject.transform.rotation);
         killedLight = false;

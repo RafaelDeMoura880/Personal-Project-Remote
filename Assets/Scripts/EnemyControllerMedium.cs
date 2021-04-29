@@ -29,15 +29,13 @@ public class EnemyControllerMedium : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Creates a chasing location based on the players position minus its own position if !hasPowerup
-        if (playerController.hasPowerup == false)
+        if (playerController.hasPowerup == false) //Creates a chasing location based on the players position minus its own position if !hasPowerup
         {
             Vector3 lookingPosition = (player.transform.position - transform.position).normalized;
             enemyRb.AddForce(lookingPosition * speed);
             ConstraintWithForce();
         }
-        //Creates a running from player location based on the players position plus its own position if hasPowerup
-        if (playerController.hasPowerup == true)
+        else //Creates a running from player location based on the players position plus its own position if hasPowerup
         {
             Vector3 lookingPosition = (player.transform.position + transform.position).normalized;
             enemyRb.AddForce(lookingPosition * speed);
