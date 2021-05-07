@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public float boundZ = 40f;
     private bool onBound;
     public bool hasPowerup;
-    private bool isAlive = true;
     private BoxCollider ground;
     private Rigidbody playerRb;
     private GameObject powerUp;
@@ -44,7 +43,7 @@ public class PlayerController : MonoBehaviour
     //Horizontal & Vertical Inputs
     void PlayerMovement()
     {
-        if (isAlive)
+        if (spawnManager.isGameOver == false)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
@@ -83,7 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && !hasPowerup)
         {
-            isAlive = false;
+            spawnManager.isGameOver = true;
             gameoverText.gameObject.SetActive(true);
             restartButton.gameObject.SetActive(true);
             spawnManager.PlayGameOverSound();
@@ -105,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(hasPowerup == true)
+        if(hasPowerup == true && spawnManager.isGameOver == false)
         {
             TimerCountdown();
         }

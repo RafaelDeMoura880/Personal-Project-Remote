@@ -11,9 +11,16 @@ public class SpawnManager : MonoBehaviour
     public GameObject powerUp;
     private PlayerController playerController;
     public GameObject titleScreen;
+    public TextMeshProUGUI titleText;
     public Button startButton;
+    public Text startText;
     public Button restartButton;
+    public Text restartText;
+    public Button engButton;
+    public Button ptbrButton;
     public GameObject winText;
+    public TextMeshProUGUI winTextText;
+    public TextMeshProUGUI loseText;
     private AudioSource menuMusic;
     private AudioSource gameSounds;
     private AudioSource gameSoundtrack;  //"soundtrack" when the game starts
@@ -40,6 +47,8 @@ public class SpawnManager : MonoBehaviour
         gameSounds = GetComponent<AudioSource>();
         menuMusic = GameObject.Find("Main Camera").GetComponent<AudioSource>();
         startButton.onClick.AddListener(StartGame);
+        engButton.onClick.AddListener(languageEnglish);
+        ptbrButton.onClick.AddListener(languagePortugues);
     }
 
     // Start Game function
@@ -155,5 +164,23 @@ public class SpawnManager : MonoBehaviour
     public void PlayPowerUpBounceSound()
     {
         gameSounds.PlayOneShot(powerupBounceSound, .1f);
+    }
+
+    public void languageEnglish()
+    {
+        startText.text = ("Start");
+        titleText.text = ("Cool Game");
+        restartText.text = ("Try Again");
+        loseText.text = ("Wasted");
+        winTextText.text = ("Nice!");
+    }
+
+    public void languagePortugues()
+    {
+        startText.text = ("Iniciar");
+        titleText.text = ("Jogo Legal");
+        restartText.text = ("Tentar de novo");
+        loseText.text = ("Se Fodeu");
+        winTextText.text = ("Boa!");
     }
 }

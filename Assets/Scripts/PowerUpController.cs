@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
-    //Speed, Rigidbody and player's gameobject
     public float speed = 1f;
     private Rigidbody powerupRb;
     private GameObject player;
     private SpawnManager spawnManager;
-    //FIND A WAY TO COMMUNICATE WITH THE CONSTRAINTOUTOFBOUNDS() ON THE PLAYERCONTROLLER
     public float boundX = 40f;
     public float boundZ = 40f;
     public float enemyForce = 10f;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         //Assigning to powerup rigidbody component & findind player's gameobject
@@ -25,11 +22,16 @@ public class PowerUpController : MonoBehaviour
     
     void FixedUpdate()
     {
-        //Creates a chasing location based on the players position plus its own positione
+        //Creates a chasing location based on the players position plus its own position
         Vector3 lookingPosition = (player.transform.position + transform.position).normalized;
         powerupRb.AddForce(lookingPosition * speed);
 
-        PowerUpMovement();
+        PowerUpConstraint();
+
+        if(spawnManager.isGameOver == true)
+        {
+            Destroy(gameObject);
+        }
     }
 
     
@@ -42,7 +44,7 @@ public class PowerUpController : MonoBehaviour
         }
     }
 
-    void PowerUpMovement()
+    void PowerUpConstraint()
     {
         //Constraints the powerup by adding a Vector3 force to the opposite side of the bounds
         if (transform.position.x > boundX)
