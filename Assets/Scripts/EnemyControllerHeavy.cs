@@ -30,6 +30,7 @@ public class EnemyControllerHeavy : MonoBehaviour
             Vector3 lookingPosition = (player.transform.position - transform.position).normalized;
             enemyRb.AddForce(lookingPosition * speed);
             ConstraintWithForce();
+            ConstraintNoForce();
         }
         else //Creates a running from player location based on the players position plus its own position if hasPowerup
         {
